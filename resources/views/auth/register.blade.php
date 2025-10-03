@@ -52,7 +52,7 @@
         </section>
         <footer class="flex flex-col items-center gap-2">
           <button type="button" class="btn w-full">Register</button>
-          <p class="mt-4 text-center text-sm">Already have an account? <a href="#" class="underline-offset-4 hover:underline">Login</a></p>
+          <p class="mt-4 text-center text-sm">Already have an account? <a href="{{ route('login') }}" class="underline-offset-4 hover:underline">Login</a></p>
         </footer>
       </div>
 </div>
