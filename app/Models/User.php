@@ -17,10 +17,17 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    
+    protected $table = 'users';
+    protected $primaryKey = 'userId';
+    public $incrementing = true;
+    protected $keyType = 'int';
+    public $timestamps = true;
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'userType',
+        'userName',
+        'userEmail',
+        'userPassword',
     ];
 
     /**
@@ -29,9 +36,9 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
-        'password',
+        'userPassword',
         'remember_token',
-    ];
+    ]
 
     /**
      * Get the attributes that should be cast.
@@ -42,7 +49,15 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'userPassword' => 'hashed',
         ];
+    }
+
+    public function getAuthPassword(){
+        return $this->userPassword;
+    }
+
+    public function isAdmin():bool{
+        return $this->userType === 'admin';
     }
 }

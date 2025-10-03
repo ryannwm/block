@@ -1,8 +1,8 @@
 <?php
 namespace App\Services;
 
-use App\Contracts\AuthServicesInterface;
+use App\Contracts\AuthServiceInterface;
 
-class AuthService implements AuthServicesInterface{
+class AuthService implements AuthServiceInterface{
     
 }
