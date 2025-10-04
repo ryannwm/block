@@ -40,4 +40,19 @@ class AuthController extends Controller
         $this->auth->logout();
         return redirect('login');
     }
+
+    public function register(Request $request){
+        $data = $request->validate([
+            'userType' => ['required'],
+            'name' => ['required'],
+            'email' => ['required'],
+            'password' => ['required']
+        ]);
+        if($data){
+            $this->auth->register($data['userType'], $data['name'], $data['email'], $data['password']);
+            return redirect(route('dashboard'));
+        }
+        return back()->withErrors(['email'=>'Invalid credentials']);
+        
+    }
 }

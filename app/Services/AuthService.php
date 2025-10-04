@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Contracts\AuthServiceInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthService implements AuthServiceInterface{
     public function attemptLogin(string $email, string $password, bool $remember = false): bool{
@@ -28,4 +29,16 @@ class AuthService implements AuthServiceInterface{
         request()->session()->regenerateToken();
     }
 
+    public function register($userType, $userName, $userEmail, $userPassword){
+        $user = 
+            User::create([
+                'userType' => $userType,
+                'userName' => $userName,    
+                'userEmail' => $userEmail,
+                'userPassword' => Hash::make($userPassword),
+            ]);
+
+        Auth::login($user);
+        request()->session()->regenerate();
+    }
 }
