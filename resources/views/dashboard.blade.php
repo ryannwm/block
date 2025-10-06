@@ -27,7 +27,7 @@
             </header>
 
             <content>
-                <form class="form grid gap-6">
+                <form method="POST" action="{{ route('user.update') }}" class="form grid gap-6">
             @csrf
              <div class="grid gap-2">
               <label for="demo-card-form-email">User Type</label>
@@ -46,7 +46,7 @@
                     <div role="option" data-value="admin">Admin</div>
                   </div>
                 </div>
-                <input type="hidden" name="userType" value="{{ Auth::user()->userType }}" />
+                <input type="hidden" name="userType" value="{{ Auth::user()->userType }}"○ />
               </div>
 
             </div>
@@ -58,13 +58,13 @@
               <label for="demo-card-form-email">Email</label>
               <input type="email" name="email" id="demo-card-form-email" value="{{ Auth::user()->userEmail }}">
             </div>
+            <footer>
+                <button class="btn-outline" onclick="document.getElementById('profile-dialog').close()">Back</button>
+                <button class="btn-primary" type="submit">Edit Profile</button>
+            </footer>
           </form>
             </content>
 
-            <footer>
-                <button class="btn-outline" onclick="document.getElementById('profile-dialog').close()">Back</button>
-                <button class="btn-primary" onclick="document.getElementById('profile-dialog').close()">Edit Profile</button>
-            </footer>
         </article>
     </dialog>
 @endsection
