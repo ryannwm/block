@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUserType;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,7 @@ Route::get('/dashboard', function () {
 })
 ->middleware(['auth', 'checkUserType:admin,user'])
 ->name('dashboard');
+
+Route::post('/dashboard/user/update', [UserController::class, 'update'])
+    ->name('user.update');
 
